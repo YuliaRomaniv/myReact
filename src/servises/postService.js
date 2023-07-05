@@ -1,0 +1,9 @@
+import {jsonApiService} from "./jsonApiService";
+import {url as urls} from "../constants/urls";
+
+class PostService {
+    getAll(){
+        return jsonApiService.get(urls.json.posts)
+    }
+}
+export const postService = new PostService();
