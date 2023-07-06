@@ -1,16 +1,13 @@
 
+
 import React from 'react';
-
-const Post = ({ post, onClick }) => {
-    const showPostDetails = () => {
-        onClick(post);
-    };
-
+import './Posts.css'
+const Post = ({ id, title, onClick }) => {
     return (
-        <div>
-            <p>ID: {post.id}</p>
-            <p>Title: {post.title}</p>
-            <button onClick={showPostDetails}>View Details</button>
+        <div className="member">
+            <h3>{id}</h3>
+            <h3>{title}</h3>
+            <button onClick={onClick}>More info</button>
         </div>
     );
 };

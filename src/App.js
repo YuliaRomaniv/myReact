@@ -1,11 +1,10 @@
 import React from 'react';
 import Posts from "./Posts/Posts";
 const App = () => {
-  return (
-      <div className="App">
-          <Posts />
-      </div>
-  );
+    return (
+        <div>
+            <Posts />
+        </div>
+    );
 };
-
 export default App;

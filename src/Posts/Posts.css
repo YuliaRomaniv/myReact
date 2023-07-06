@@ -1,0 +1,14 @@
+.member {
+    border: 1px solid silver;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+}
+button{
+    width: 100px;
+    height: 30px;
+    background-color:lightgreen ;
+    border: 1px solid silver;
+    border-radius: 10px;
+}

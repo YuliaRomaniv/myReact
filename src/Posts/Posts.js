@@ -1,46 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import Post from './Post';
+import PostDetails from './PostDetails';
+
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [selectedPost, setSelectedPost] = useState(null);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(data => setPosts(data))
-            .catch(error => console.log(error));
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const data = await response.json();
+                setPosts(data);
+            } catch (error) {
+                console.log('Error fetching posts:', error);
+            }
+        };
+
+        fetchPosts();
     }, []);
 
-    const showPostDetails = (event) => {
-        const selectedPostId = event.target.dataset.post;
-        const selectedPost = posts.find((post) => post.id === selectedPostId);
-        setSelectedPost(selectedPost);
+    const handlePostClick = (post) => {
+        setSelectedPost(post);
     };
-
 
     return (
         <div>
-            {/* Відображення кнопки вибору поста та детальної інформації */}
-            {selectedPost !== null ? (
-                <div>
-                    <h2>Selected Post:</h2>
-                    <Post post={selectedPost} />
-                </div>
-            ) : (
-                <button onClick={showPostDetails} data-post={post.id}>View Details</button>
-
-            )}
-
-            {/* Відображення списку постів */}
+            <h2>Posts</h2>
             {posts.map((post) => (
-                <div key={post.id}>
-                    <h3>{post.title}</h3>
-                    <p>{post.body}</p>
-                </div>
+                <Post
+                    key={post.id}
+                    id={post.id}
+                    title={post.title}
+                    onClick={() => handlePostClick(post)}
+                />
             ))}
+            {selectedPost && (
+                <div>
+                    <h3>Selected Post</h3>
+                    <PostDetails post={selectedPost} />
+                </div>
+            )}
         </div>
     );
-
 };
 
 export default Posts;
