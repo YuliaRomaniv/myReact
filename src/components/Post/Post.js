@@ -1,4 +1,4 @@
-const Post = ({ post }) => {
+const Post = ({post}) => {
     const { id, userId, title, body } = post;
 
     return (
